@@ -10,7 +10,7 @@ class RequestFilter(django_filters.FilterSet):
         model = Request
         fields = {
             'id': ['exact'],
-            'customer' : ['icontains'],
+            'customer' : ['exact'],
             'status' : ['exact'],
             'faction' : ['exact'],
             'priority' : ['exact'],

@@ -51,24 +51,11 @@ def request_detail_view(request, id):
             #Send email to leaders
             if newData['faction']:
                 for member in requestFactionMembersConcerned:
-                    send_mail(
-                    'Request N° '+str(id)+' assigned to your faction has been updated',
-                    message='text',
-                    html_message=message,
-                    recipient_list=[member.user.username],
-                    from_email=settings.EMAIL_HOST_USER,
-                    fail_silently=False,
-                )
+                    send_mail('Request N° '+str(id)+' assigned to your faction has been updated', message='text',html_message=message,recipient_list=[member.user.username], from_email=settings.EMAIL_HOST_USER, fail_silently=False,)
             #Send email to assigned consultant
             if newData['consultant']:
-                send_mail(
-                    'Request N° '+str(id)+' assigned to you has been updated',
-                    message='text',
-                    html_message=message,
-                    recipient_list=[get_object_or_404(User, pk=newData['consultant'])],
-                    from_email=settings.EMAIL_HOST_USER,
-                    fail_silently=False,
-                )
+                assignedConsultant = get_object_or_404(User, pk=newData['consultant'])
+                send_mail('Request N° '+str(id)+' assigned to you has been updated',message='text',html_message=message,recipient_list=[assignedConsultant.username],from_email=settings.EMAIL_HOST_USER,fail_silently=False,)
             return redirect('requests')
     else:
         form = RequestRegisration(instance=oldData)
@@ -90,31 +77,17 @@ def addRequest(request):
         if form.is_valid():
             form.save()
             message = render_to_string("request/requestCreatedEmail.html",{
-            'data': data,
             'user': request.user
         })
             #Send email to leaders
             if data['faction']:
                 for member in requestFactionMembersConcerned:
-                    send_mail(
-                    'One new request has been assigned to your faction',
-                    message='text',
-                    html_message=message,
-                    recipient_list=[member.user.username],
-                    from_email=settings.EMAIL_HOST_USER,
-                    fail_silently=False,
-                    )
+                    send_mail('One new request has been assigned to your faction',message='text',html_message=message,recipient_list=[member.user.username],from_email=settings.EMAIL_HOST_USER,fail_silently=False,)
             #Send email to assigned consultant
             if data['consultant']:
-                for member in requestFactionMembersConcerned:
-                    send_mail(
-                    'One new request has been assigned to you',
-                    message='text',
-                    html_message=message,
-                    recipient_list=[get_object_or_404(User, pk=data['consultant'])],
-                    from_email=settings.EMAIL_HOST_USER,
-                    fail_silently=False,
-                    )
+                assignedConsultant = get_object_or_404(User, pk=data['consultant'])
+                send_mail(
+                'One new request has been assigned to you',message='text',html_message=message,recipient_list=[assignedConsultant.username],from_email=settings.EMAIL_HOST_USER,fail_silently=False,)
             messages.success(request, 'Request created')
             return redirect('requests')
     else:

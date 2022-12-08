@@ -4,7 +4,7 @@
     vertical-align: top;
 
 }
-.addFactionForm, .linkToFaction, .addChannel{
+.addFactionForm, .linkToFaction, .addChannel, .addCustomer{
     width: 95%;
     background-color: white;
     border-radius: 10px;
@@ -13,21 +13,21 @@
     margin-top: 20px;
 }
 
-.addFactionForm .title, .linkToFaction .title, .addChannel .title{
+.addFactionForm .title, .linkToFaction .title, .addChannel .title, .addCustomer .title{
     color: #161A3B;
 }
-.addFactionForm form, .addChannel form{
+.addFactionForm form, .addChannel form, .addCustomer form{
     padding: 10px;
     float: left;
     width: 90%;
 }
-.addFactionForm .input, .addChannel input{
+.addFactionForm .input, .addChannel .input, .addCustomer .input{
     display: inline;
     width: 100%;
     margin: 10px;
     
 }
-.addFactionForm input, .editFactionForm input, .addChannel input{
+.addFactionForm input, .editFactionForm input, .addChannel input, .addCustomer input{
     color: #161A3B;
     padding: 10px;
     border: 1px solid #161A3B;
@@ -41,7 +41,7 @@
     border: 1px solid #161A3B;
     border-radius: 10px;
 }
-.addFactionForm button, .editFactionForm button, .addChannel button{
+.addFactionForm button, .editFactionForm button, .addChannel button, .addCustomer button{
     padding: 10px;
     background-color: #161A3B;
     border-radius: 10px;
@@ -51,7 +51,7 @@
 .addFactionForm button{
     margin: 20px;
 }
-.addFactionForm .factions, .linkToFaction .factions, .addChannel .factions{
+.addFactionForm .factions, .linkToFaction .factions, .addChannel .factions, .addCustomer .factions{
     border-radius: 10px;
     border: 1px solid #161A3B;
     width: 95%;
@@ -84,7 +84,7 @@
 .factions::-webkit-scrollbar-thumb:hover {
   opacity: 60%; 
 }
-.addFactionForm .line, .linkToFaction .line, .addChannel .line{
+.addFactionForm .line, .linkToFaction .line, .addChannel .line, .addCustomer .line{
     padding: 10px;
     border-radius: 10px;
     box-shadow: 10px 5px 5px rgb(234, 234, 234);

@@ -113,5 +113,35 @@
             </div>
         </div>
     </div>
+    <div class="section">
+        <div class="addCustomer">
+            {% if customer_form.errors %}
+                <div class="error">
+                    {{ customer_form.errors }}
+                </div>
+            {% endif %}
+            <div class="title">
+                Customers
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input">
+                    {{customer_form.name}}
+                </div>
+                <div class="input">
+                    <button name="addCustomer" class="btn" type="submit">Add customer</button>
+                </div>
+            </form>
+            <div class="factions">
+                {% for customer in customers %}
+                <a href="{% url 'customer' id=customer.id %}">
+                    <div class="line">
+                        {{customer.name}}    
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 </center>
 {% endblock %}

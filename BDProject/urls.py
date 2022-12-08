@@ -32,6 +32,7 @@ urlpatterns = [
     path('settings', user_views.settings, name='settings'),
     path('faction/<int:id>', user_views.faction_detail_view, name='faction'),
     path('channel/<int:id>', request_views.channel_detail_view, name='channel'),
+    path('customer/<int:id>', user_views.customer_detail_view, name='customer'),
     path('users/', include('users.urls')),
     path('requests/', include('request.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

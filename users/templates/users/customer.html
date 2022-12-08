@@ -1,0 +1,31 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static './users/settings.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    <div class="editFactionForm">
+        {% if form.errors %}
+            <div class="error">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <div class="title">
+            Edit customer N° {{data.id}}
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="input">
+                {{form.name}}
+            </div>
+            <div class="input">
+                <button class="btn" type="submit">Edit customer</button>
+            </div>
+        </form>
+        <div class="deleteLink">
+            <a href="{% url 'deleteCustomerConfirmation' id=data.id %}">Delete this customer</a>
+        </div>
+    </div>
+</center>
+{% endblock %}

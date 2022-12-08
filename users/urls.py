@@ -10,5 +10,7 @@ urlpatterns = [
     path('delete/faction/<int:id>',views.deleteFaction, name="deleteFaction"),
     path('deleteChannelConfirmation/<int:id>',views.deleteChannelConfirmation, name="deleteChannelConfirmation"),
     path('delete/channel/<int:id>',views.deleteChannel, name="deleteChannel"),
+    path('deleteCustomerConfirmation/<int:id>',views.deleteCustomerConfirmation, name="deleteCustomerConfirmation"),
+    path('delete/customer/<int:id>',views.deleteCustomer, name="deleteCustomer"),
     path('resetPassword/<int:id>',views.resetPassword, name="resetPassword"),
 ]

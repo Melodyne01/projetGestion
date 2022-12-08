@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Faction, Profile, Channel
+from .models import Faction, Profile, Channel, Customer
 import datetime
 
 class UserUpdateForm(forms.ModelForm):
@@ -36,6 +36,14 @@ class AddChannel(forms.ModelForm):
 
     class Meta:
         model = Channel
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Name'})
+        }
+class AddCustomer(forms.ModelForm):
+
+    class Meta:
+        model = Customer
         fields = ['name']
         widgets = {
             'name': forms.TextInput(attrs={'placeholder': 'Name'})

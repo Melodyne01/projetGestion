@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.admin.views.decorators import staff_member_required
-from .forms import UserUpdateForm, AddFactionForm, EditProfile, LinkUserToFaction, AddChannel
+from .forms import UserUpdateForm, AddFactionForm, EditProfile, LinkUserToFaction, AddChannel, AddCustomer
 from django.contrib.auth.models import User
-from .models import Faction, Profile, Channel
+from .models import Faction, Profile, Channel, Customer
 from request.models import Request
 from django.shortcuts import get_object_or_404
 import datetime
@@ -17,7 +17,7 @@ from django.conf import settings as conf_settings
 def home(request):
     #Get the list of registered users
     users = User.objects.all()
-    #If list is empty
+    #If list is empty 
     if not users:
         #Create default superuser
         user = User.objects.create_user( "tanguy.baldewyns@gmail.com", password="aaaaaa", is_staff=True, is_superuser=True)
@@ -41,14 +41,7 @@ def register(request):
             'user': user.username,
             'password': randomPassword
         })
-            send_mail(
-                    'Welcome To Business & Decision Belgium',
-                    message='text',
-                    html_message=message,
-                    recipient_list=[data['username']],
-                    from_email=conf_settings.EMAIL_HOST_USER,
-                    fail_silently=False,
-                    )
+            send_mail('Welcome To Business & Decision Belgium',message='text',html_message=message,recipient_list=[data['username']],from_email=conf_settings.EMAIL_HOST_USER,fail_silently=False,)
             messages.success(request, 'Account created')
             return redirect('users')
     else:
@@ -119,9 +112,11 @@ def settings(request):
     factions = Faction.objects.all()
     profiles = Profile.objects.all()
     channels = Channel.objects.all()
+    customers = Customer.objects.all()
     
     f_form = AddFactionForm()
     c_form = AddChannel()
+    customer_form = AddCustomer()
     
     if request.method == "POST":
         if 'addChannel' in request.POST:
@@ -136,13 +131,21 @@ def settings(request):
                 f_form.save()
                 messages.success(request, 'Faction created')
                 return redirect('settings')
-    
+        elif 'addCustomer' in request.POST:
+            customer_form = AddCustomer(request.POST)
+            if customer_form.is_valid():
+                customer_form.save()
+                messages.success(request, 'Customer created')
+                return redirect('settings')
+
     context = {
         'f_form': f_form,
         'c_form': c_form,
+        'customer_form': customer_form,
         'factions':factions,
         'profiles':profiles,
-        'channels':channels
+        'channels':channels,
+        'customers':customers
     }
     return render(request, 'users/settings.html', context)
 
@@ -166,6 +169,27 @@ def faction_detail_view(request, id):
     }
     return render(request, 'users/faction.html', context)
 
+
+@staff_member_required()
+@login_required
+def customer_detail_view(request, id):
+    data = get_object_or_404(Customer, pk=id)
+
+    if request.method == 'POST':
+        form = AddCustomer(request.POST, instance=data)
+        if form.is_valid():
+            # update the existing `Band` in the database
+            form.save()
+            # redirect to the detail page of the `Band` we just updated
+            return redirect('settings')
+    else:
+        form = AddCustomer(instance=data)
+    context = {
+        'form': form,
+        'data':data
+    }
+    return render(request, 'users/customer.html', context)
+
 @staff_member_required()
 @login_required
 def resetPassword(request, id):
@@ -179,14 +203,7 @@ def resetPassword(request, id):
     'password': randomPassword
     })
 
-    send_mail(
-        'Welcome To Business & Decision Belgium',
-        message='text',
-        html_message=message,
-        recipient_list=[user.username],
-        from_email=conf_settings.EMAIL_HOST_USER,
-        fail_silently=False,
-    )
+    send_mail('Welcome To Business & Decision Belgium', message='text', html_message=message, recipient_list=[user.username], from_email=conf_settings.EMAIL_HOST_USER, fail_silently=False,)
 
     return redirect('user', id=user.id)
 
@@ -236,5 +253,21 @@ def deleteFaction(request, id):
 
     factionToDelete = Faction.objects.get(pk=id)
     factionToDelete.delete()
+
+    return redirect('settings')
+
+@staff_member_required()
+@login_required
+def deleteCustomerConfirmation(request, id):
+
+    customer = Customer.objects.get(pk=id)
+    return render(request, 'users/deleteCustomerConfirmation.html', {'customer': customer})
+
+@staff_member_required()
+@login_required
+def deleteCustomer(request, id):
+
+    customerToDelete = Customer.objects.get(pk=id)
+    customerToDelete.delete()
 
     return redirect('settings')

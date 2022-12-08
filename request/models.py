@@ -1,6 +1,6 @@
 from django.db import models
 from django.core.validators import MinValueValidator
-from users.models import Faction, Profile, Channel
+from users.models import Faction, Profile, Channel, Customer
 from django import forms
 
 
@@ -36,7 +36,7 @@ class Request(models.Model):
         (FOUR, 4),
     )
 
-    customer = models.CharField(max_length=30, null=True, blank=True)
+    customer = models.ForeignKey(Customer, on_delete=models.SET_NULL, null=True, blank=True)
     channel = models.ForeignKey(Channel, on_delete=models.SET_NULL, null=True, blank=True)
     reference = models.CharField(max_length=30, null=True, blank=True)
     title = models.CharField(max_length=50, null=True, blank=True)
