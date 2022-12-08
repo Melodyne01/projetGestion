@@ -19,15 +19,22 @@
     border-radius: 10px;
     position: relative;
 }
+.shortInput .input .name{
+    color: #161A3B;
+}
 .label{
     color: #161A3B;
     position: absolute;
     top: -15px;
     left: 5px;
     font-size: 12px;
+    width: fit-content;
 
 }
-
+input[type="checkbox"]{
+    fill: red;
+    width: 30px;
+}
 .filterForm .label{
     color: white;
 }

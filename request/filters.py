@@ -11,6 +11,7 @@ class RequestFilter(django_filters.FilterSet):
         fields = {
             'id': ['exact'],
             'customer' : ['exact'],
+            'sales' : ['exact'],
             'status' : ['exact'],
             'faction' : ['exact'],
             'priority' : ['exact'],

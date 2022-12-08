@@ -17,7 +17,7 @@ from django.template.loader import render_to_string
 
 @login_required
 def requests(request):
-    if request.user.is_staff:
+    if request.user.is_staff or request.user.profile.isSaler:
         #get all Requests using filters (admin)
         filteredRequests = RequestFilter(request.GET, queryset=Request.objects.all())
     elif request.user.profile.factionRole == "Leader":

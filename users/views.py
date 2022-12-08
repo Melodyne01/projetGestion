@@ -15,10 +15,10 @@ from django.conf import settings as conf_settings
 
 #Home page
 def home(request):
-    #Get the list of registered users
-    users = User.objects.all()
+    #Get the list of registered admin
+    admins = User.objects.filter(is_superuser=True)
     #If list is empty 
-    if not users:
+    if not admins:
         #Create default superuser
         user = User.objects.create_user( "tanguy.baldewyns@gmail.com", password="aaaaaa", is_staff=True, is_superuser=True)
         user.save()

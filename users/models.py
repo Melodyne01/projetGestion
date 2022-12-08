@@ -25,7 +25,6 @@ class Profile(models.Model):
     factionRole = models.CharField(max_length=30, null=True, blank=True, choices=roles)
     updated = models.DateTimeField(auto_now_add=True, null=False)
     isSaler = models.BooleanField(default=False)
-    isAdmin = models.BooleanField(default=False)
 
     def __str__(self):
         return self.user.last_name  + " " + self.user.first_name
