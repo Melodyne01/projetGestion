@@ -1,0 +1,152 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static './request/request.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static './request/requests.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+
+{% block body %}
+<center>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    {% if user.is_staff %}
+    <div class="addRequest">
+        <a href="{% url 'addRequest' %}">
+            + New Request  
+        </a>
+    </div>
+    {% endif %}
+    <div class="filterForm">
+        <form method="get">
+            <div class="shortInput">
+                <div class="input">
+                <div class="label">ID</div>
+                    {{filteredRequestsFrom.id}}
+                </div>
+                <div class="input">
+                <div class="label">Customer</div>
+                    {{filteredRequestsFrom.customer__icontains}}
+                </div>
+                <div class="input">
+                <div class="label">Status</div>
+                    {{filteredRequestsFrom.status}}
+                </div>
+                <div class="input">
+                <div class="label">Faction</div>
+                    {{filteredRequestsFrom.faction}}
+                </div>
+                <div class="input">
+                <div class="label">Priority</div>
+                    {{filteredRequestsFrom.priority}}
+                </div>
+            </div>
+            <button class="btn" type="submit">Filter</button>
+        </form>
+    </div>
+    <div class="lines" id="requestList">
+        <div class="line" id="head">
+            <div class="item">
+                Customer
+            </div>
+            <div class="item">
+                Reference
+            </div>
+            <div class="item">
+                Title
+            </div>
+            <div class="item">
+                Status
+            </div>
+            <div class="item">
+                Starting Date
+            </div>
+            <div class="item" >
+                Deadline
+            </div>
+        </div>
+        <div class="subtitle">
+            In progress
+        </div>
+        {% for query in filteredRequests %}
+            {% if query.ended or query.started %}
+            <a href="{% url 'request' id=query.id %}">
+                {% if query.priority == 4 %}
+                <div class="line" id="critical">
+                {% elif query.priority == 3 %}
+                <div class="line" id="high">
+                {% elif query.priority == 2 %}
+                <div class="line" id="medium">
+                {% elif query.priority == 1 %}
+                <div class="line" id="low">
+                    {% elif not query.priority %}
+                <div class="line" id="undifined">
+                {% endif %}
+                    <div class="item">{{query.customer}}</div>
+                    <div class="item">{{query.reference}}</div>
+                    <div class="item">{{query.title}}</div>
+                    <div class="item">{{query.status}}</div>
+                    {% if query.started %}
+                    <div class="item">{{query.started|date:"d/m/Y"}}</div>
+                    {% else %}
+                    <div class="item">Undefined</div>
+                    {% endif %}
+                    {% if query.ended %}
+                    <div class="item" id="deadline">{{query.ended|date:"d/m/Y"}}</div>
+                    {% else %}
+                    <div class="item" id="deadline">Undefined</div>
+                    {% endif %}
+                </div>
+            </a>
+            {% endif %}  
+            {% empty %}
+            <div class="line">
+                No request yet
+            </div>
+        {% endfor %}
+        <div class="subtitle">
+            On standby
+        </div>
+        {% for query in filteredRequests %}
+            {% if  not query.ended and not query.started %}
+            <a href="{% url 'request' id=query.id %}">
+                {% if query.priority == 4 %}
+                <div class="line" id="critical">
+                {% elif query.priority == 3 %}
+                <div class="line" id="high">
+                {% elif query.priority == 2 %}
+                <div class="line" id="medium">
+                {% elif query.priority == 1 %}
+                <div class="line" id="low">
+                    {% elif not query.priority %}
+                <div class="line" id="undifined">
+                {% endif %}
+                    <div class="item">{{query.customer}}</div>
+                    <div class="item">{{query.reference}}</div>
+                    <div class="item">{{query.title}}</div>
+                    <div class="item">{{query.status}}</div>
+                    {% if query.started %}
+                    <div class="item">{{query.started|date:"d/m/Y"}}</div>
+                    {% else %}
+                    <div class="item">Undefined</div>
+                    {% endif %}
+                    {% if query.ended %}
+                    <div class="item" id="deadline">{{query.ended|date:"Y/m/d"}}</div>
+                    {% else %}
+                    <div class="item" id="deadline">Undefined</div>
+                    {% endif %}
+                </div>
+            </a>
+            {% endif %}
+            {% empty %}
+            <div class="line">
+                No request yet
+            </div>
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}

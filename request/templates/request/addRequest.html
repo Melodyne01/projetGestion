@@ -1,0 +1,106 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static './request/request.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    <div class="addRequestForm">
+        <div class="title">
+            Add a new request
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="shortInput">
+                <div class="input">
+                <div class="label">Customer</div>
+                    {{form.customer}}
+                </div>
+                <div class="input">
+                <div class="label">Channel</div>
+                    {{form.channel}}
+                </div>
+                <div class="input">
+                <div class="label">Reference</div>
+                    {{form.reference}}
+                </div>
+                <div class="input">
+                <div class="label">Title</div>
+                    {{form.title}}
+                </div>
+                <div class="input">
+                <div class="label">Level</div>
+                    {{form.level}}
+                </div>
+                <div class="input">
+                <div class="label">Sales</div>
+                    {{form.sales}}
+                </div>
+                <div class="input">
+                <div class="label">Faction</div>
+                    {{form.faction}}
+                </div>
+                <div class="input">
+                <div class="label">Consultant</div>
+                    {{form.consultant}}
+                </div>
+                <div class="input">
+                <div class="label">Status</div>
+                    {{form.status}}
+                </div>
+                <div class="input" id="priority">
+                <div class="label">Priority</div>
+                    {{form.priority}}
+                </div>
+            </div>
+            <div class="longInput">
+                <div class="input">
+                <div class="label">Skills</div>
+                    {{form.skills}}
+                </div>
+                <div class="input">
+                <div class="label">Internal comments</div>
+                    {{form.internalComments}}
+                </div>
+                <div class="input">
+                <div class="label">Client comment</div>
+                    {{form.clientComment}}
+                </div>
+    
+            </div>
+            <div class="dates">
+                <div class="input">
+                <div class="label">Date proposed (yyyy-mm-dd)</div>
+                    {{form.dateProposed}}
+                </div>
+                <div class="input">
+                <div class="label">Starting date (yyyy-mm-dd)</div>
+                    {{form.started}}
+                </div>
+                <div class="input">
+                <div class="label">Duration</div>
+                    {{form.durationMonths}}
+                </div>
+                <div class="input">
+                <div class="label">Deadline (yyyy-mm-dd)</div>
+                    {{form.ended}}
+                </div>
+            </div>
+            <div class="shortInput" id="pdf">
+                <div class="input">
+                <div class="label">Pdf</div>
+                    {{form.pdf}}
+                </div>
+            </div>
+            
+            <button class="btn" type="submit">Add Request</button>
+        </form>
+    </div>
+</center>
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,63 @@
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Business & Decision</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    </head>
+    <style>
+        body{
+            background-color: #161A3B;
+            overflow: hidden;
+        }
+        header{
+            height: max-content;
+        }
+        p{
+            font-size: 30px;
+            display: inline-block;
+            margin: 5px;
+        }
+        .link{
+            width: 100%;
+            margin-top: 50px;
+        }
+        .btn{
+            margin: 40px;
+        }
+        .link a{
+            background-color: white;
+            border-radius: 10px;
+            color: #161A3B;
+            border: 1px solid #161A3B;
+            padding: 15px;
+        }
+
+        .link a:hover{
+            background-color: #161A3B;
+            color:white;
+            border: 1px solid white;
+        }
+    </style>
+    <body>
+        <center>
+            <header>
+                <div class="title">
+                    <br>
+                    <p class="light">WE ARE </p><p class="bold">DATA & DIGITAL</p>
+                </div>
+            </header>
+            <main>
+                <div class="link">
+                    <p>Request N° {{id}} has been updated  by {{user.first_name}} {{user.last_name}}</p>
+                    <br>
+                    <div class="btn">
+                        <a target="_blank" href="http://localhost:8000/requests/{{id}}">More details</a>
+                    </div>
+                </div>
+            </main>
+        </center>
+    </body>
+</html>

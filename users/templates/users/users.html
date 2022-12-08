@@ -1,0 +1,49 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static './request/requests.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="addRequest">
+        <a href="{% url 'register' %}">
+            + New User  
+        </a>
+    </div>
+    <div class="lines" id="userList">
+        <div class="line" id="head">
+            <div class="item">
+                First name
+            </div>
+            <div class="item">
+                Last name
+            </div>
+            <div class="item">
+                Faction
+            </div>
+            <div class="item">
+                Role
+            </div>
+        </div>
+        {% for user in users %}
+            <a href="{% url 'user' id=user.id %}">
+                <div class="line">
+                    <div class="item">{{user.first_name}}</div>
+                    <div class="item">{{user.last_name}}</div>
+                    <div class="item">{{user.profile.faction}}</div>
+                    <div class="item">{{user.profile.factionRole}}</div>
+                </div>
+            </a>
+        {% empty %}
+            No users yet
+        {% endfor %}
+    </div>
+</center>
+{% endblock %}

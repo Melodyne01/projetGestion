@@ -1,0 +1,116 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static './request/request.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    <div class="addRequestForm">
+        {% if form.errors %}
+            <div class="error">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <div class="title">
+            Request N° {{data.id}}
+        </div>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% if user.is_staff %}
+                <div class="shortInput">
+            {% else %}
+                <div class="shortInput" id="disable">
+            {% endif %}
+                <div class="input">
+                <div class="label">Customer</div>
+                    {{form.customer}}
+                </div>
+                <div class="input">
+                <div class="label">Channel</div>
+                    {{form.channel}}
+                </div>
+                <div class="input">
+                <div class="label">Reference</div>
+                    {{form.reference}}
+                </div>
+                <div class="input">
+                <div class="label">Title</div>
+                    {{form.title}}
+                </div>
+                <div class="input">
+                <div class="label">Level</div>
+                    {{form.level}}
+                </div>
+                <div class="input">
+                <div class="label">Sales</div>
+                    {{form.sales}}
+                </div>
+                <div class="input">
+                <div class="label">Faction</div>
+                    {{form.faction}}
+                </div>
+                <div class="input">
+                <div class="label">Consultant</div>
+                    {{form.consultant}}
+                </div>
+                <div class="input">
+                <div class="label">Status</div>
+                    {{form.status}}
+                </div>
+                <div class="input" id="priority">
+                <div class="label">Priority</div>
+                    {{form.priority}}
+                </div>
+            </div>
+            <div class="longInput">
+                <div class="input">
+                <div class="label">Skills</div>
+                    {{form.skills}}
+                </div>
+                <div class="input">
+                <div class="label">Internal comments</div>
+                    {{form.internalComments}}
+                </div>
+                <div class="input">
+                <div class="label">Client comment</div>
+                    {{form.clientComment}}
+                </div>
+    
+            </div>
+            <div class="dates">
+                <div class="input">
+                <div class="label">Date proposed (yyyy-mm-dd)</div>
+                    {{form.dateProposed}}
+                </div>
+                <div class="input">
+                <div class="label">Starting date (yyyy-mm-dd)</div>
+                    {{form.started}}
+                </div>
+                <div class="input">
+                <div class="label">Duration</div>
+                    {{form.durationMonths}}
+                </div>
+                <div class="input">
+                <div class="label">Deadline (yyyy-mm-dd)</div>
+                    {{form.ended}}
+                </div>
+            </div>
+            <div class="shortInput" id="pdf">
+                <div class="input">
+                <div class="label">Pdf</div>
+                    {{form.pdf}}
+                </div>
+            </div>
+            {% if user.is_staff %}
+            <button class="btn" type="submit">Update Request</button>
+            {% endif %}
+        </form>
+        {% if user.is_staff %}
+        <div class="deleteLink">
+            <a href="{% url 'deleteRequestConfirmation' id=data.id %}">Delete this request</a>
+        </div>
+        {% endif %}
+        
+    </div>
+</center>
+{% endblock %}

@@ -1,0 +1,119 @@
+.addRequestForm{
+    background-color: white;
+    width: 90%;
+    border-radius: 10px;
+    min-height: 20vh;
+    margin-top: 20px;
+}
+
+.title{
+    font-size: 20px;
+    padding: 15px;
+    font-weight: bold;
+    color: #161A3B;
+}
+
+.shortInput .input, .longInput .input, .dates .input{
+    display: inline-flex;
+    margin: 15px;
+    border-radius: 10px;
+    position: relative;
+}
+.label{
+    color: #161A3B;
+    position: absolute;
+    top: -15px;
+    left: 5px;
+    font-size: 12px;
+
+}
+
+.filterForm .label{
+    color: white;
+}
+.shortInput .input input, .longInput .input textarea, .dates .input input, select{
+    padding: 6px;
+    border-radius: 10px;
+    border: 1px solid #161A3B;
+    background-color: white;
+
+}
+
+.longInput .input textarea{
+    resize: none;
+}
+input:focus, textarea:focus, select:focus{
+    outline: none;
+    opacity: 80%;
+}
+
+#priority input {
+    width: 60px;
+}
+
+.btn{
+    background-color: #161A3B;
+    color: white;
+    width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+    height: 40px;
+}
+.btn:hover, #logout:hover{
+    cursor: pointer;
+    opacity: 60%;
+}
+
+.filterForm .btn{
+    background-color: white;
+    color: #161A3B;
+    width: 10%;
+    min-width: fit-content;
+}
+.logoutBtn {
+    background-color: #A4353B;
+    color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
+.link{
+    display: inline-block
+}
+#update{
+    width: 90%;
+}
+#logout {
+    width: 100px;
+    margin-left: -80px;
+}
+#logout svg{
+    width: 16px;
+}
+#pdf {
+    color: #161A3B;
+    visibility: hidden;
+}
+
+#pdf a{
+    color: #161A3B;
+    visibility: initial;
+}
+
+#id_pdf{
+    visibility: initial;
+}
+
+#disable .input select{
+    pointer-events:none;
+}
+
+#resetPassword{
+    color: #161A3B;
+    border: 1px solid #161A3B;
+    padding: 10px;
+    border-radius: 10px;
+}
+#resetPassword:hover{
+    opacity: 60%;
+}

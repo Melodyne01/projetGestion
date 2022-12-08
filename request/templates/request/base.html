@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Business & Decision</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- CSS only -->
+    {% load static %}
+    <link href="{% static './request/base.css' %}" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" type="image/png" href="{% static './request/images/favicon.ico' %}"/>
+    {% block css %}{% endblock %}
+</head>
+<header>
+    <center>
+        <div class="navbar">
+            <div class="items">
+            {% if user.is_authenticated %}
+                <a href="{% url 'requests' %}">
+                    <div class="item">Requests</div>
+                </a>
+                {% if user.is_staff %}
+                <a href="{% url 'users' %}">
+                    <div class="item">Users</div>
+                </a>
+                <a href="{% url 'settings' %}">
+                    <div class="item">Settings</div>
+                </a>
+                {% endif %}
+                <a href="{% url 'profile' %}">
+                    <div class="item">Profile</div>
+                </a>
+            {% endif %}
+        </div>
+    </div>
+    </center>
+</header>
+
+<body>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+    {% block js %}{% endblock %}
+</body>
+
+</html>

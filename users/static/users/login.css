@@ -1,0 +1,73 @@
+
+.container{
+    margin-top: 50px;
+}
+section{
+    width: 48%;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+.logoCard img{
+    margin: 40px;
+
+}
+.logoCard p{
+    color: white;
+    font-size: 40px;
+    display: inline;
+}
+
+.logo{
+    width:500px;
+}
+.loginCard{
+    background-color: white;
+    width: fit-content;
+    height: 55vh;
+    padding: 0px 40px;
+    border-radius: 50px;
+}
+.loginCard h4{
+    padding:50px 20px 20px 20px;
+    color: rgb(22, 26, 59);
+}
+.loginCard .icon svg{
+    width: 25px;
+    color: rgb(22, 26, 59);
+    vertical-align: middle;
+}
+.loginCard input{
+    border: 1px solid #C4C4C4;
+    border-radius: 10px;
+    padding: 7px;
+    margin: 10px;
+    color: #161A3B;
+}
+.loginCard input:focus{
+    outline: none;
+    border: 1px solid #161A3B;
+}
+
+.btn{
+    padding: 5px;
+    background-color: #161A3B;
+    color: white;
+    width: 80%;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px;
+}
+.btn:hover{
+    cursor: pointer;
+    opacity: 60%;
+}
+.errorMessage{
+    background-color: #A4353B;
+    color: white;
+    font-size: 10px;
+    padding: 4px;
+    border-radius: 10px;
+    width: fit-content;
+    margin: 30px;
+}

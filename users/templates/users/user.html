@@ -1,0 +1,100 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static './request/request.css' %}" type="text/css" rel="stylesheet">
+    <link href="{% static './request/requests.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+
+<center>
+    <div class="addRequestForm">
+        {% if form.errors %}
+            <div class="error">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <div class="title">
+            User N° {{data.id}}
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="shortInput">
+                <div class="input">
+                    {{form.first_name}}
+                </div>
+                <div class="input">
+                    {{form.last_name}}
+                </div>
+                <div class="input">
+                    {{form.username}}
+                </div>
+            </div>
+            <div class="faction">
+                <div class="title">
+                    Faction of {{data.first_name}} {{data.last_name}}
+                </div>
+                <div class="shortInput">
+                    <div class="input">
+                        {{p_form.faction}}
+                    </div>
+                    <div class="input">
+                        {{p_form.factionRole}}
+                    </div>
+                </div>
+            </div>
+            <button class="btn" type="submit">Update user</button>
+            <a id="resetPassword" href="{% url 'resetPassword' id=data.id %}">Reset password</a>
+        </form>
+        <div class="deleteLink">
+            <a href="{% url 'deleteUserConfirmation' id=data.id %}">Delete this user</a>
+        </div>
+    </div>
+    <div class="addRequestForm">
+        <div class="title">
+            Requests assigned to {{data.first_name}} {{data.last_name}}
+        </div>
+        <div class="lines" id="userList">
+            <div class="line" id="head">
+            <div class="item">
+                Customer
+            </div>
+            <div class="item">
+                Reference
+            </div>
+            <div class="item">
+                Title
+            </div>
+            <div class="item">
+                Starting Date
+            </div>
+            <div class="item" >
+                Deadline
+            </div>
+        </div>
+            {% for query in requestFromUser %}
+                <a href="{% url 'request' id=query.id %}">
+                    <div class="line">
+                        <div class="item">{{query.customer}}</div>
+                        <div class="item">{{query.reference}}</div>
+                        <div class="item">{{query.title}}</div>
+                        {% if query.started %}
+                        <div class="item">{{query.started}}</div>
+                        {% else %}
+                        <div class="item">Undefined</div>
+                        {% endif %}
+                        {% if query.ended %}
+                        <div class="item" id="deadline">{{query.ended|date:"Y/m/d"}}</div>
+                        {% else %}
+                        <div class="item" id="deadline">Undefined</div>
+                        {% endif %}
+                    </div>
+                </a>
+                {% empty %}
+                <div class="line">
+                    No request yet
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+{% endblock %}

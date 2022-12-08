@@ -1,0 +1,66 @@
+.addRequest{
+    margin: 30px;
+}
+
+.addRequest a{
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+}
+.addRequest a:hover{
+    border: 1px solid transparent;
+    opacity: 60%;
+}
+
+.subtitle{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: left;
+    width: 90%;
+    margin: 10px;
+}
+.line{
+    background-color: white;
+    color: #646464;
+    width: 90%;
+    border-radius: 10px;
+    margin-top: 10px;
+    display: inline-flex;
+    padding: 10px;
+    border: 1px solid #161A3B;
+}
+
+#head{
+    background-color: #161A3B;
+    color: white;
+    border: 1px solid white;
+}
+
+#userList .item{
+    width: 33%;
+}
+#requestList .item{
+    width: 20%;
+}
+#deadline{
+    color: #A4353B;
+}
+#critical{
+    background-color: #A4353B;
+    color: white;
+}
+#critical #deadline, #high #deadline{
+    color: white;
+}
+#high{
+    background-color: #DF6036;
+    color: white;
+}
+
+#medium{
+    background-color: #FCB12C;
+}
+#undifined{
+    background-color: #C4C4C4;
+}

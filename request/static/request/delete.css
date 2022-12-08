@@ -1,0 +1,39 @@
+.card{
+    width: 90%;
+    background-color: white;
+    color: #161A3B;
+    border-radius: 10px;
+    min-height: 30vh;
+    height: 400px;
+    position: relative;
+}
+.title{
+    font-size: 30px;
+    text-align: left;
+    padding: 20px;
+    font-weight: bold;
+}
+.choices{
+    text-align: left;
+    margin: 30px 20px;
+    position: absolute;
+    bottom: 10px;
+}
+.choices a{
+    color: white;
+    background-color: #161A3B;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+#yes{
+    background-color: #A4353B;
+}
+.warningMessage{
+    color: #A4353B;
+    text-align: left;
+    font-size: 20px;
+    margin: 20px;
+    font-weight: bold;
+    vertical-align: middle;
+}

@@ -1,0 +1,71 @@
+@font-face {
+    font-family: "acherus_militant_bold";
+    src: url("font/acherus_militant_bold.otf.otf") format("truetype");
+}
+@font-face {
+    font-family: "acherus_militant_light";
+    src: url("font/acherus_militant_light.otf.otf") format("truetype");
+}
+*{
+    margin: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+body{
+    background-color: #161A3B;
+    color: white;
+}
+a{
+    color: white;
+    text-decoration: none;
+}
+header{
+    height: 60px;
+}
+.navbar{
+    width: fit-content;
+    border: 1px solid white;
+    border-radius: 10px;
+    margin-top: -10px;
+    position: relative;
+}
+.navbar .item{
+    display: inline-block;
+    padding: 10px;
+    border-bottom: 1px solid transparent;
+    margin: 10px;
+}
+
+.navbar .item:hover{
+    border-bottom: 1px solid white;
+    opacity: 60%;
+}
+
+.container{
+    margin-top: 20px;
+}
+.message, .error{
+    background-color: #161A3B;
+    color: white;
+    font-size: 12px;
+    padding: 4px;
+    border-radius: 10px;
+    width: fit-content;
+}
+.message ul{
+    list-style-type: none;
+    width: fit-content;
+}
+
+.light{
+    font-family: "acherus_militant_light", sans-serif;
+}
+.bold{
+    font-family: "acherus_militant_bold", sans-serif;
+}
+.deleteLink{
+    padding: 10px;
+}
+.deleteLink a {
+    color: #A4353B;
+}

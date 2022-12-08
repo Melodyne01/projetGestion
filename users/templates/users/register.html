@@ -1,0 +1,34 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+    <link href="{% static './request/request.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    <div class="addRequestForm">
+        {% if form.errors %}
+            <div class="message">
+                {{ form.errors }}
+            </div>
+        {% endif %}
+        <div class="title">
+            Create an new user
+        </div>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="shortInput">
+                <div class="input">
+                    {{form.first_name}}
+                </div>
+                <div class="input">
+                    {{form.last_name}}
+                </div>
+                <div class="input">
+                    {{form.username}}
+                </div>
+            </div>
+            <button class="btn" type="submit">Create user</button>
+        </form>
+    </div>
+</center>
+{% endblock %}

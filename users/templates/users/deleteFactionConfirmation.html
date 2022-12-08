@@ -1,0 +1,28 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static './request/delete.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    <div class="card">
+        <div class="title">
+            Are you sure you want to delete faction "{{faction.name}}" ?
+        </div>
+        
+        <div class="warningMessage">
+            If you decide to delete the request, it cannot be retrieved later
+        </div>
+        <div class="choices">
+            <a id="yes" href="{% url 'deleteFaction' id=faction.id %}">YES</a>
+            <a id="no" href="{% url 'settings' %}">NO</a>
+        </div>
+    </div>
+</center>
+{% endblock %}
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
+from .models import Faction, Profile, Channel
+import datetime
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'last_name', 'username']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'placeholder': 'First name'}),
+            'last_name': forms.TextInput(attrs={'placeholder': 'Last name'}),
+            'username': forms.TextInput(attrs={'placeholder': 'Email'}),
+        }
+
+class AddFactionForm(forms.ModelForm):
+    class Meta:
+        model = Faction
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Name'})
+        }
+
+class EditProfile(forms.ModelForm):
+    class Meta:
+        model = Profile
+        exclude = ('user',)
+        
+class LinkUserToFaction(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['user', 'faction', 'factionRole'] 
+
+class AddChannel(forms.ModelForm):
+
+    class Meta:
+        model = Channel
+        fields = ['name']
+        widgets = {
+            'name': forms.TextInput(attrs={'placeholder': 'Name'})
+        }
+    

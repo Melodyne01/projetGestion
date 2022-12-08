@@ -1,0 +1,117 @@
+{% extends 'request/base.html' %}
+{% load static %}
+{% block css %}
+<link href="{% static './users/settings.css' %}" type="text/css" rel="stylesheet">
+{% endblock %}
+{% block body %}
+<center>
+    {% if messages %}
+        {% for message in messages %}
+            <div class="message">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+    <div class="section">
+        <div class="addFactionForm">
+            {% if f_form.errors %}
+                <div class="error">
+                    {{ f_form.errors }}
+                </div>
+            {% endif %}
+            <div class="title">
+                Factions
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input">
+                    {{f_form.name}}
+                </div>
+                <div class="input">
+                    <button name="addFaction" class="btn" type="submit">Add faction</button>
+                </div>
+            </form>
+            <div class="factions">
+                {% for faction in factions %}
+                <a href="{% url 'faction' id=faction.id %}">
+                    <div class="line">
+                        {{faction.name}}    
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="linkToFaction">
+            <div class="title">
+                Link faction to user
+            </div>
+            <div class="factions">
+                <div class="line" id="titleLine">
+                        <div class="user">
+                            Last Name
+                        </div>
+                        <div class="user">
+                            First Name
+                        </div>  
+                        <div class="faction">
+                            Faction
+                        </div>
+                        <div class="factionRole">
+                            Faction Role
+                        </div>  
+                    </div>
+                {% for profile in profiles %}
+                <a href="{% url 'user' id=profile.id %}">
+                    <div class="line">
+                        <div class="lastname">
+                            {{profile.user.last_name}}    
+                        </div>
+                        <div class="firstname">
+                            {{profile.user.first_name}} 
+                        </div>
+                        <div class="faction">
+                            {{profile.faction}}    
+                        </div> 
+                        <div class="factionRole">
+                            {{profile.factionRole}}
+                        </div>    
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="section">
+        <div class="addChannel">
+            {% if c_form.errors %}
+                <div class="error">
+                    {{ c_form.errors }}
+                </div>
+            {% endif %}
+            <div class="title">
+                Channels
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="input">
+                    {{c_form.name}}
+                </div>
+                <div class="input">
+                    <button name="addChannel" class="btn" type="submit">Add channel</button>
+                </div>
+            </form>
+            <div class="factions">
+                {% for channel in channels %}
+                <a href="{% url 'channel' id=channel.id %}">
+                    <div class="line">
+                        {{channel.name}}    
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</center>
+{% endblock %}
