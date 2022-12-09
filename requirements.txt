@@ -1,5 +1,5 @@
 argcomplete==2.0.0
-asgiref==3.5.2
+asgiref
 attrs==22.1.0
 CacheControl==0.12.11
 cachy==0.3.0
