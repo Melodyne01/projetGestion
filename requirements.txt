@@ -2,7 +2,7 @@ asgiref
 certifi
 distlib
 Django
-django-cors-header
+django-cors-headers
 django-crispy-forms
 django-environ
 django-filter
