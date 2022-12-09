@@ -20,7 +20,7 @@ def home(request):
     #If list is empty 
     if not admins:
         #Create default superuser
-        user = User.objects.create_user( "tanguy.baldewyns@gmail.com", password="aaaaaa", is_staff=True, is_superuser=True)
+        user = User.objects.create_user("tanguy.baldewyns@gmail.com", password="aaaaaa", is_staff=True, is_superuser=True)
         user.save()
 
     return redirect('login')

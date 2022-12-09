@@ -2,7 +2,6 @@
     display: inline-block;
     width: 45%;
     vertical-align: top;
-
 }
 .addFactionForm, .linkToFaction, .addChannel, .addCustomer{
     width: 95%;
@@ -25,7 +24,6 @@
     display: inline;
     width: 100%;
     margin: 10px;
-    
 }
 .addFactionForm input, .editFactionForm input, .addChannel input, .addCustomer input{
     color: #161A3B;
@@ -33,7 +31,6 @@
     border: 1px solid #161A3B;
     border-radius: 10px;
     width: 60%;
-    
 }
 .addFactionForm select{
     color: #161A3B;
@@ -46,7 +43,7 @@
     background-color: #161A3B;
     border-radius: 10px;
     color: white;
-    
+    margin: 10px;
 }
 .addFactionForm button{
     margin: 20px;
@@ -90,7 +87,6 @@
     box-shadow: 10px 5px 5px rgb(234, 234, 234);
     margin-top: 10px;
     color: #161A3B;
-
 }
 .linkToFaction #titleLine{
     background-color: #161A3B;
@@ -113,4 +109,19 @@
 .editFactionForm form {
     display: inline-flex;
 
+}
+
+@media only screen and (max-width: 1000px) {
+    .addFactionForm .line, .linkToFaction .line, .addChannel .line, .addCustomer .line{
+    font-size: 12px;
+    }
+}
+@media only screen and (max-width: 800px) {
+    .section{
+    display: block;
+    width: 95%;
+    }
+    .addFactionForm .factions, .linkToFaction .factions, .addChannel .factions, .addCustomer .factions{
+    height: 200px;
+    }
 }

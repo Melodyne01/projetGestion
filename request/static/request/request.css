@@ -3,6 +3,7 @@
     width: 90%;
     border-radius: 10px;
     min-height: 20vh;
+    margin-bottom: 20px;
     margin-top: 20px;
 }
 
@@ -32,7 +33,6 @@
 
 }
 input[type="checkbox"]{
-    fill: red;
     width: 30px;
 }
 .filterForm .label{
@@ -43,7 +43,6 @@ input[type="checkbox"]{
     border-radius: 10px;
     border: 1px solid #161A3B;
     background-color: white;
-
 }
 
 .longInput .input textarea{
@@ -124,3 +123,28 @@ input:focus, textarea:focus, select:focus{
 #resetPassword:hover{
     opacity: 60%;
 }
+
+@media only screen and (max-width: 1030px) {
+    #resetPassword{
+        display: block;
+        width: fit-content;
+    }
+    #logout {
+        width: 60px;
+        margin-left: -20px;
+    }
+    #update{
+        width: 85%;
+    }
+}
+@media only screen and (max-width: 930px) {
+    #pdf *{
+    display: block
+    }
+    #pdf a{
+    font-size: 12px;
+}
+}
+
+
+

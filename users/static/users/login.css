@@ -1,30 +1,31 @@
 
 .container{
-    margin-top: 50px;
+    margin-top: 30px;
 }
 section{
-    width: 48%;
+    width: 45%;
     display: inline-block;
     vertical-align: middle;
     margin: 10px;
+    position: relative;
 }
 .logoCard img{
     margin: 40px;
-
 }
 .logoCard p{
     color: white;
     font-size: 40px;
+}
+.text p{
     display: inline;
 }
-
 .logo{
-    width:500px;
+    width:100%;
 }
 .loginCard{
     background-color: white;
     width: fit-content;
-    height: 55vh;
+    height: 300px;
     padding: 0px 40px;
     border-radius: 50px;
 }
@@ -43,6 +44,7 @@ section{
     padding: 7px;
     margin: 10px;
     color: #161A3B;
+    width: 60%;
 }
 .loginCard input:focus{
     outline: none;
@@ -70,4 +72,32 @@ section{
     border-radius: 10px;
     width: fit-content;
     margin: 30px;
+}
+@media only screen and (max-width: 1500px) {
+    .logo{
+    width:90%;
+    }
+}
+@media only screen and (max-width: 1050px) {
+    .logoCard p{
+        font-size: 20px;
+    }
+}
+
+@media only screen and (max-width: 715px) {
+    .container{
+        margin-top: 0px;
+    }
+    section{
+        width: 95%;
+    }
+    .logoCard img{
+        margin: 25px;
+    }
+    .logoCard p{
+        font-size: 30px;
+    }
+    .logo{
+    width:80%;
+    }
 }

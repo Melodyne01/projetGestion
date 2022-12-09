@@ -89,7 +89,7 @@
                         <div class="item">{{query.reference}}</div>
                         <div class="item">{{query.title}}</div>
                         {% if query.started %}
-                        <div class="item">{{query.started}}</div>
+                        <div class="item">{{query.started|date:"Y/m/d"}}</div>
                         {% else %}
                         <div class="item">Undefined</div>
                         {% endif %}

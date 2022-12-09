@@ -25,10 +25,10 @@
     color: #646464;
     width: 90%;
     border-radius: 10px;
-    margin-top: 10px;
     display: inline-flex;
     padding: 10px;
     border: 1px solid #161A3B;
+    margin: 5px;
 }
 
 #head{
@@ -63,4 +63,9 @@
 }
 #undifined{
     background-color: #C4C4C4;
+}
+@media only screen and (max-width: 600px) {
+    .line{
+        font-size: 12px;
+}
 }

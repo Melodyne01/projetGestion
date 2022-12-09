@@ -12,7 +12,8 @@
     font-family: Arial, Helvetica, sans-serif;
 }
 body{
-    background-color: #161A3B;
+    background: url("/static/images/laptopBg.png");
+    background-size: cover;
     color: white;
 }
 a{
@@ -40,7 +41,6 @@ header{
     border-bottom: 1px solid white;
     opacity: 60%;
 }
-
 .container{
     margin-top: 20px;
 }
@@ -68,4 +68,9 @@ header{
 }
 .deleteLink a {
     color: #A4353B;
+}
+@media only screen and (max-width: 415px) {
+    .navbar .item{
+    font-size: 12px;
+    }
 }
