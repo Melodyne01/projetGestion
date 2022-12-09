@@ -17,6 +17,7 @@ django-environ==0.9.0
 django-filter
 django-pyodbc-azure
 django-pyodbc-azure-2019
+djangorestframework
 dulwich==0.20.50
 environ==1.0
 filelock==3.8.0
