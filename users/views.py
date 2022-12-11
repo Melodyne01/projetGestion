@@ -205,7 +205,7 @@ def resetPassword(request, id):
 
     send_mail('Welcome To Business & Decision Belgium', message='text', html_message=message, recipient_list=[user.username], from_email=conf_settings.EMAIL_HOST_USER, fail_silently=False,)
 
-    return redirect('user', id=user.id)
+    return redirect('users')
 
 @staff_member_required()
 @login_required

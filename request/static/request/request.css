@@ -123,6 +123,9 @@ input:focus, textarea:focus, select:focus{
 #resetPassword:hover{
     opacity: 60%;
 }
+#hidden{
+    display: none;
+}
 
 @media only screen and (max-width: 1030px) {
     #resetPassword{
