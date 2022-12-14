@@ -76,7 +76,6 @@ def users(request):
 @staff_member_required()
 @login_required 
 def user_detail_view(request, id):
-    
     data = get_object_or_404(User, pk=id)
     profile = get_object_or_404(Profile, user=data)
     requestFromUser = []
@@ -101,7 +100,8 @@ def user_detail_view(request, id):
         'data': data,
         'form': form,
         'p_form': p_form,
-        'requestFromUser': requestFromUser 
+        'requestFromUser': requestFromUser,
+        'profile': profile
     }
 
     return render(request, 'users/user.html', context)

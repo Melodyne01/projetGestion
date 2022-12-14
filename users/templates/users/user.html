@@ -61,9 +61,15 @@
         </div>
     </div>
     <div class="addRequestForm">
+        {% if profile.factionRole == 'leader' %}
+        <div class="title">
+            Requests assigned to {{profile.faction}}
+        </div>
+        {% else %}
         <div class="title">
             Requests assigned to {{data.first_name}} {{data.last_name}}
         </div>
+        {% endif %}        
         <div class="lines" id="userList">
             <div class="line" id="head">
             <div class="item">
