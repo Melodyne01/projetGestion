@@ -80,9 +80,9 @@ def user_detail_view(request, id):
     profile = get_object_or_404(Profile, user=data)
     requestFromUser = []
     if profile.factionRole == "Leader":
-        requestFromUser = Request.objects.filter(faction=profile.faction).values()
+        requestFromUser = Request.objects.filter(faction=profile.faction)
     else:
-        requestFromUser += Request.objects.filter(consultant=profile).values()
+        requestFromUser += Request.objects.filter(consultant=profile)
     if request.method == 'POST':
         form = UserUpdateForm(request.POST, instance=data)
         p_form = EditProfile(request.POST ,instance=profile)
