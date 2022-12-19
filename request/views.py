@@ -35,7 +35,6 @@ def requests(request):
 
 @login_required 
 def request_detail_view(request, id):
-    
     oldData = get_object_or_404(Request, pk=id)
     if request.method == 'POST':
         form = RequestRegisration(request.POST,request.FILES, instance=oldData)
@@ -70,17 +69,23 @@ def request_detail_view(request, id):
 def addRequest(request):
     requestFactionMembersConcerned = []
     if request.method == "POST":
+        #Call the request regisrtration form
         form = RequestRegisration(request.POST)
+        #Create a copy of the request to have access to the data into the form
         data = request.POST.copy()
+        #If the request is assigned to one faction
         if data['faction']:
             requestFactionMembersConcerned = Profile.objects.filter(factionRole="Leader").filter(faction=data['faction'])
         if form.is_valid():
+            #save the request
             form.save()
+            #create the HTML template to send by email
             message = render_to_string("request/requestCreatedEmail.html",{
             'user': request.user
         })
             #Send email to leaders
             if data['faction']:
+                #Send email to each faction leads
                 for member in requestFactionMembersConcerned:
                     send_mail('One new request has been assigned to your faction',message='text',html_message=message,recipient_list=[member.user.username],from_email=settings.EMAIL_HOST_USER,fail_silently=False,)
             #Send email to assigned consultant
@@ -97,14 +102,13 @@ def addRequest(request):
 @staff_member_required()
 @login_required
 def deleteRequestConfirmation(request, id):
-
+    #redirect to the confirmation page
     return render(request, 'request/deleteRequestConfirmation.html', {'id': id})
-
 
 @staff_member_required()
 @login_required
 def deleteRequest(request, id):
-
+    #Delete the request selected
     requestsToDelete = Request.objects.get(pk=id)
     requestsToDelete.delete()
 

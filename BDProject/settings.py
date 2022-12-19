@@ -26,7 +26,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'e!frpk-%_9)8y8ckj&c8)01u$a-1lkz83_r#vhprlqcfv^#)&%'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'BDProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'dev',
+        'NAME': 'prod',
         'USER': 'Groot@helb-ba3-2022-g1',
         'PASSWORD': '6UtHsEI0wL7iKFuJjgQH',
         'HOST': 'helb-ba3-2022-g1.database.windows.net',

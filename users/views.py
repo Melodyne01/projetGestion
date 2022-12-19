@@ -15,7 +15,7 @@ from django.conf import settings as conf_settings
 
 #Home page
 def home(request):
-    #Get the list of registered admin
+    #Get the list of registered superusers
     admins = User.objects.filter(is_superuser=True)
     #If list is empty 
     if not admins:
@@ -25,6 +25,7 @@ def home(request):
 
     return redirect('login')
 
+# Page available for admin only
 @staff_member_required()
 @login_required
 def register(request):
@@ -32,15 +33,21 @@ def register(request):
         data = request.POST.copy()
         form = UserUpdateForm(data)
         if form.is_valid():
+            #Create user in db
             form.save()
+            #select new user by username (unique field)
             user = get_object_or_404(User, username=data['username'])
+            #generate random password
             randomPassword = User.objects.make_random_password()
+            #apply new passord to the user
             user.set_password(randomPassword)
             user.save()
+            #HTML tempalte and data to send to the view
             message = render_to_string("users/registerEmail.html",{
             'user': user.username,
             'password': randomPassword
         })
+            #send the notification by email
             send_mail('Welcome To Business & Decision Belgium',message='text',html_message=message,recipient_list=[data['username']],from_email=conf_settings.EMAIL_HOST_USER,fail_silently=False,)
             messages.success(request, 'Account created')
             return redirect('users')
@@ -51,11 +58,11 @@ def register(request):
 @login_required
 def profile(request):
     if request.method == 'POST':
+        #create the from with current user info
         u_form = UserUpdateForm(request.POST ,instance=request.user)
-
         if u_form.is_valid():
+            #save new infos
             u_form.save()
-            
             messages.success(request, 'Account updated')
             return redirect('profile')
     else:
@@ -76,21 +83,24 @@ def users(request):
 @staff_member_required()
 @login_required 
 def user_detail_view(request, id):
+    #get all data from user 
     data = get_object_or_404(User, pk=id)
     profile = get_object_or_404(Profile, user=data)
     requestFromUser = []
+    #get requests by role
+    # assigned to his faction if he is faction lead and assigned to him if he is consultant
     if profile.factionRole == "Leader":
         requestFromUser = Request.objects.filter(faction=profile.faction)
     else:
         requestFromUser += Request.objects.filter(consultant=profile)
     if request.method == 'POST':
+        #if form is submited
         form = UserUpdateForm(request.POST, instance=data)
         p_form = EditProfile(request.POST ,instance=profile)
         if form.is_valid() and p_form.is_valid():
-            # update the existing `Band` in the database
+            # update in the database
             form.save()
             p_form.save()
-            # redirect to the detail page of the `Band` we just updated
             return redirect('users')
     else:
         form = UserUpdateForm(instance=data)
@@ -109,16 +119,18 @@ def user_detail_view(request, id):
 @staff_member_required()
 @login_required
 def settings(request):
+    #get list of required infos
     factions = Faction.objects.all()
     profiles = Profile.objects.all()
     channels = Channel.objects.all()
     customers = Customer.objects.all()
-    
+    #creation of different forms
     f_form = AddFactionForm()
     c_form = AddChannel()
     customer_form = AddCustomer()
-    
+    #if one form in submited
     if request.method == "POST":
+        #define witch form is submited
         if 'addChannel' in request.POST:
             c_form = AddChannel(request.POST)
             if c_form.is_valid():
@@ -137,7 +149,7 @@ def settings(request):
                 customer_form.save()
                 messages.success(request, 'Customer created')
                 return redirect('settings')
-
+    #send data to the view
     context = {
         'f_form': f_form,
         'c_form': c_form,
@@ -193,16 +205,19 @@ def customer_detail_view(request, id):
 @staff_member_required()
 @login_required
 def resetPassword(request, id):
-
+    #get current user infos
     user = get_object_or_404(User, pk=id)
+    #generate new password
     randomPassword = User.objects.make_random_password()
+    #apply the new password for the current user
     user.set_password(randomPassword)
     user.save()
+    #generate the HTML template for the notification
     message = render_to_string("users/registerEmail.html",{
     'user': user.username,
     'password': randomPassword
     })
-
+    #send the new email with de new password and username
     send_mail('Welcome To Business & Decision Belgium', message='text', html_message=message, recipient_list=[user.username], from_email=conf_settings.EMAIL_HOST_USER, fail_silently=False,)
 
     return redirect('users')

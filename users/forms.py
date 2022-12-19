@@ -4,6 +4,7 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import Faction, Profile, Channel, Customer
 import datetime
 
+#Form used for the registration and updating of one account
 class UserUpdateForm(forms.ModelForm):
     class Meta:
         model = User
