@@ -84,7 +84,7 @@ WSGI_APPLICATION = 'BDProject.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'sql_server.pyodbc',
-        'NAME': 'dev',
+        'NAME': 'prod',
         'USER': 'Groot@helb-ba3-2022-g1',
         'PASSWORD': '6UtHsEI0wL7iKFuJjgQH',
         'HOST': 'helb-ba3-2022-g1.database.windows.net',
